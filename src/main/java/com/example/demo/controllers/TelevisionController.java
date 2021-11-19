@@ -42,15 +42,14 @@ public class TelevisionController {
         return ResponseEntity.created(location).build();
     }
 
+//    Hieronder een specifieke weergave van de PathVariable die nodig is al er in de 'value' meerdere
+//    variabelen staan die bepalen welk record moet worden verwijderd.
 
-
-//    @DeleteMapping(value = "/televisions/{id}")
-////    Hieronder een specifieke weergave van de PathVariable die nodig is al er in de 'value' meerdere
-////    variabelen staan die bepalen welk record moet worden verwijderd.
-//    public ResponseEntity<Object> deleteTelevision(@PathVariable("id") int id) {
-//        inventory.remove(id);
-//        return ResponseEntity.noContent().build();
-//    }
+    @DeleteMapping(value = "/televisions/{id}")
+    public ResponseEntity<Object> deleteBook(@PathVariable("id") int id) {
+        televisionService.deleteBook(id);
+        return ResponseEntity.noContent().build();
+    }
 
 //    @PutMapping(value = "/televisions/{id}")
 //    public ResponseEntity<Object> updateTelevision(@PathVariable int id, @RequestBody Television television) {
