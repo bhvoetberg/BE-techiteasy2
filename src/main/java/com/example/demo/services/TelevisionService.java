@@ -11,17 +11,11 @@ import java.util.Optional;
 @Service
 public class TelevisionService {
 
-//    private Television Television;
-//    ArrayList<Television> testTvs = new ArrayList<Television>();
-//    Television tv1 = new Television("BrandA", "NameB" ,"TypeC");
-
-
     @Autowired
     private TelevisionRepository televisionRepository;
 
     public Iterable<Television> getTelevisions() {
             return televisionRepository.findAll();
-//            return testTvs;
     }
 
     public Television getTelevision(int id) {
