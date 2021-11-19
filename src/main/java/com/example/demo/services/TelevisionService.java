@@ -3,12 +3,8 @@ package com.example.demo.services;
 import com.example.demo.exceptions.RecordNotFoundException;
 import com.example.demo.models.Television;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.example.demo.repositories.TelevisionRepository;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.Optional;
 
 @Service
@@ -37,7 +33,7 @@ public class TelevisionService {
         return newTelevision.getId();
     }
 
-    public void deleteBook(int id) {
+   public void deleteBook(int id) {
         if (televisionRepository.existsById(id)) {
             televisionRepository.deleteById(id);
         }
@@ -45,5 +41,20 @@ public class TelevisionService {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }
+
+    public void updateTelevision(int id, Television television) {
+        Optional<Television> optionalTelevision = televisionRepository.findById(id);
+
+        if (optionalTelevision.isPresent()) {
+//            Television storedTelevision = optionalTelevision.get();
+//
+//            television.setId(storedTelevision.getId());
+            televisionRepository.save(television);
+        }
+        else {
+            throw new RecordNotFoundException("ID does not exist!!!");
+        }
+    }
+
 
 }
