@@ -56,5 +56,27 @@ public class TelevisionService {
         }
     }
 
+    public void partialUpdateBook(int id, Television television) {
+        Optional<Television> optionalTelevision = televisionRepository.findById(id);
+
+        if (optionalTelevision.isPresent()) {
+            Television storedBook = televisionRepository.findById(id).orElse(null);
+
+            if (television.getName()!=null && !television.getName().isEmpty()) {
+                storedBook.setName(television.getName());
+            }
+            if (television.getBrand()!=null && !television.getBrand().isEmpty()) {
+                storedBook.setBrand(television.getBrand());
+            }
+            if (television.getType()!=null && !television.getType().isEmpty()) {
+                storedBook.setType(television.getType());
+            }
+            televisionRepository.save(storedBook);
+
+        }
+        else {
+            throw new RecordNotFoundException("ID does not exist!!!");
+        }
+    }
 
 }

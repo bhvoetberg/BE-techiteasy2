@@ -20,14 +20,6 @@ public class TelevisionController {
         return ResponseEntity.ok(televisionService.getTelevisions());
     }
 
-//    @GetMapping(value = "/televisions")
-//    public ResponseEntity<Object> getTelevisions(@RequestParam(name="name", defaultValue = "") String name) {
-//
-//        var televisions = televisionService.getTelevisions();
-//
-//        return ResponseEntity.ok(televisions);
-//    }
-
     @GetMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> getTelevision(@PathVariable int id) {
         return ResponseEntity.ok(televisionService.getTelevision(id));
@@ -56,20 +48,9 @@ public class TelevisionController {
         return ResponseEntity.noContent().build();
     }
 
-
-//    @PatchMapping(value = "/televisions/{id}")
-//    public ResponseEntity<Object> partialUpdateTelevision(@PathVariable int id, @RequestBody Television television) {
-//        Television existingTelevision = inventory.get(id);
-//        if (!television.getName().isEmpty()) {
-//            existingTelevision.setName(television.getName());
-//        }
-//        if (!television.getBrand().isEmpty()) {
-//            existingTelevision.setBrand(television.getBrand());
-//        }
-//        if (!television.getType().isEmpty()) {
-//            existingTelevision.setType(television.getType());
-//        }
-//        return ResponseEntity.noContent().build();
-//    }
-
+    @PatchMapping(value = "/televisions/{id}")
+    public ResponseEntity<Object> partialUpdateBook(@PathVariable int id, @RequestBody Television television) {
+        televisionService.partialUpdateBook(id, television);
+        return ResponseEntity.noContent().build();
+    }
 }
