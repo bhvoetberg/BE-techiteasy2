@@ -46,9 +46,9 @@ public class TelevisionService {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
 
         if (optionalTelevision.isPresent()) {
-//            Television storedTelevision = optionalTelevision.get();
-//
-//            television.setId(storedTelevision.getId());
+            Television storedTelevision = optionalTelevision.get();
+
+            television.setId(storedTelevision.getId());
             televisionRepository.save(television);
         }
         else {
