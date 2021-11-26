@@ -13,13 +13,12 @@ public class TelevisionService {
     @Autowired
     private TelevisionRepository televisionRepository;
 
-    public Iterable<Television> getTelevisions() {
-            return televisionRepository.findAll();
+    public Iterable<Television> getAllTelevisions() {
+        return televisionRepository.findAll();
     }
 
     public Television getTelevision(int id) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
-
         if (optionalTelevision.isPresent()) {
             return optionalTelevision.get();
         }
@@ -32,6 +31,7 @@ public class TelevisionService {
         Television newTelevision = televisionRepository.save(television);
         return newTelevision.getId();
     }
+
 
    public void deleteBook(int id) {
         if (televisionRepository.existsById(id)) {

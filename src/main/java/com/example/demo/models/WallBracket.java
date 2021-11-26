@@ -1,6 +1,15 @@
 package com.example.demo.models;
 
-public class Wallbracket {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "wallbrackets")
+
+public class WallBracket {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String size;
     private Boolean adjustable;

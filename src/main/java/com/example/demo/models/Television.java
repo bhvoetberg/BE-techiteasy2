@@ -28,15 +28,6 @@ public class Television {
     private Integer originalStock;
     private Integer sold;
 
-    public Television() {
-    }
-
-    public Television(String brand, String name, String type) {
-        this.brand = brand;
-        this.name = name;
-        this.type = type;
-    }
-
     public int getId() {
         return id;
     }

@@ -17,7 +17,7 @@ public class TelevisionController {
 
     @GetMapping(value ="/televisions")
     public ResponseEntity<Object> getTelevisions() {
-        return ResponseEntity.ok(televisionService.getTelevisions());
+        return ResponseEntity.ok(televisionService.getAllTelevisions());
     }
 
     @GetMapping(value = "/televisions/{id}")

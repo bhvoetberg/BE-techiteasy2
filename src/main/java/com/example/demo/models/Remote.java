@@ -1,6 +1,15 @@
 package com.example.demo.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "remotes")
+
 public class Remote {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long id;
     private String compatibleWidth;
     private String batteryType;
