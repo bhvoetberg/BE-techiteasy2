@@ -26,8 +26,7 @@ public class TelevisionService {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
         if (optionalTelevision.isPresent()) {
             return optionalTelevision.get();
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
     }
@@ -35,28 +34,27 @@ public class TelevisionService {
     public void deleteTelevision(int id) {
         if (televisionRepository.existsById(id)) {
             televisionRepository.deleteById(id);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }
 
-public int addTelevision(TelevisionRequestDto televisionRequestDto) {
-    String name = televisionRequestDto.getName();
-    List<Television> televisions = (List<Television>)televisionRepository.findAllByName(name);
-    if (televisions.size() > 0) {
-        System.out.println("Lengte is: " + televisions.size());
-        throw new BadRequestException("Name already exists!!!");
+    public int addTelevision(TelevisionRequestDto televisionRequestDto) {
+        String name = televisionRequestDto.getName();
+        List<Television> televisions = (List<Television>) televisionRepository.findAllByName(name);
+        if (televisions.size() > 0) {
+            System.out.println("Lengte is: " + televisions.size());
+            throw new BadRequestException("Name already exists!!!");
+        }
+
+        Television television = new Television();
+        television.setName(televisionRequestDto.getName());
+        television.setType(televisionRequestDto.getType());
+        television.setBrand(televisionRequestDto.getBrand());
+
+        Television newTelevision = televisionRepository.save(television);
+        return newTelevision.getId();
     }
-
-    Television television = new Television();
-    television.setName(televisionRequestDto.getName());
-    television.setType(televisionRequestDto.getType());
-    television.setBrand(televisionRequestDto.getBrand());
-
-    Television newTelevision = televisionRepository.save(television);
-    return newTelevision.getId();
-}
 
     public void updateTelevision(int id, Television television) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
@@ -65,8 +63,7 @@ public int addTelevision(TelevisionRequestDto televisionRequestDto) {
             Television storedTelevision = optionalTelevision.get();
             television.setId(storedTelevision.getId());
             televisionRepository.save(television);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }
@@ -75,21 +72,20 @@ public int addTelevision(TelevisionRequestDto televisionRequestDto) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
 
         if (optionalTelevision.isPresent()) {
-            Television storedBook = televisionRepository.findById(id).orElse(null);
+            Television storedTelevision = televisionRepository.findById(id).orElse(null);
 
-            if (television.getName()!=null && !television.getName().isEmpty()) {
-                storedBook.setName(television.getName());
+            if (television.getName() != null && !television.getName().isEmpty()) {
+                storedTelevision.setName(television.getName());
             }
-            if (television.getBrand()!=null && !television.getBrand().isEmpty()) {
-                storedBook.setBrand(television.getBrand());
+            if (television.getBrand() != null && !television.getBrand().isEmpty()) {
+                storedTelevision.setBrand(television.getBrand());
             }
-            if (television.getType()!=null && !television.getType().isEmpty()) {
-                storedBook.setType(television.getType());
+            if (television.getType() != null && !television.getType().isEmpty()){
+                storedTelevision.setType(television.getType());
             }
-            televisionRepository.save(storedBook);
+            televisionRepository.save(storedTelevision);
 
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }
