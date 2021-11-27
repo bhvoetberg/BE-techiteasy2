@@ -53,38 +53,35 @@ public class CIModuleService {
         return newCIModule.getId();
     }
 
-//    public void updateTelevision(int id, Television television) {
-//        Optional<Television> optionalTelevision = televisionRepository.findById(id);
-//
-//        if (optionalTelevision.isPresent()) {
-//            Television storedTelevision = optionalTelevision.get();
-//            television.setId(storedTelevision.getId());
-//            televisionRepository.save(television);
-//        } else {
-//            throw new RecordNotFoundException("ID does not exist!!!");
-//        }
-//    }
-//
-//    public void partialUpdateBook(int id, Television television) {
-//        Optional<Television> optionalTelevision = televisionRepository.findById(id);
-//
-//        if (optionalTelevision.isPresent()) {
-//            Television storedTelevision = televisionRepository.findById(id).orElse(null);
-//
-//            if (television.getName() != null && !television.getName().isEmpty()) {
-//                storedTelevision.setName(television.getName());
-//            }
-//            if (television.getBrand() != null && !television.getBrand().isEmpty()) {
-//                storedTelevision.setBrand(television.getBrand());
-//            }
-//            if (television.getType() != null && !television.getType().isEmpty()){
-//                storedTelevision.setType(television.getType());
-//            }
-//            televisionRepository.save(storedTelevision);
-//
-//        } else {
-//            throw new RecordNotFoundException("ID does not exist!!!");
-//        }
-//    }
+    public void updateCIModule(Long id, CIModule ciModule) {
+        Optional<CIModule> optionalCIModule = ciModuleRepository.findById(id);
+
+        if (optionalCIModule.isPresent()) {
+            CIModule storedCIModule = optionalCIModule.get();
+            ciModule.setId(storedCIModule.getId());
+            ciModuleRepository.save(ciModule);
+        } else {
+            throw new RecordNotFoundException("ID does not exist!!!");
+        }
+    }
+
+    public void partialUpdateCIModuleBook(Long id, CIModule ciModule) {
+        Optional<CIModule> optionalCIModule = ciModuleRepository.findById(id);
+
+        if (optionalCIModule.isPresent()) {
+            CIModule storedCIModule = ciModuleRepository.findById(id).orElse(null);
+
+            if (ciModule.getName() != null && !ciModule.getName().isEmpty()) {
+                storedCIModule.setName(ciModule.getName());
+            }
+            if (ciModule.getPrice() != null && !ciModule.getPrice().isNaN()) {
+                storedCIModule.setPrice(ciModule.getPrice());
+            }
+            ciModuleRepository.save(storedCIModule);
+
+        } else {
+            throw new RecordNotFoundException("ID does not exist!!!");
+        }
+    }
 
 }

@@ -51,8 +51,8 @@ public class TelevisionController {
     }
 
     @PatchMapping(value = "/televisions/{id}")
-    public ResponseEntity<Object> partialUpdateBook(@PathVariable Long id, @RequestBody Television television) {
-        televisionService.partialUpdateBook(id, television);
+    public ResponseEntity<Object> partialUpdateTelevision(@PathVariable Long id, @RequestBody Television television) {
+        televisionService.partialUpdateTelevision(id, television);
         return ResponseEntity.noContent().build();
     }
 }

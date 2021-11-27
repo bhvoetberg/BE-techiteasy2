@@ -68,7 +68,7 @@ public class TelevisionService {
         }
     }
 
-    public void partialUpdateBook(Long id, Television television) {
+    public void partialUpdateTelevision(Long id, Television television) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
 
         if (optionalTelevision.isPresent()) {

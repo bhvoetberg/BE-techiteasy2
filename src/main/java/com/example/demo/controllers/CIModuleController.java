@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dtos.CIModuleRequestDto;
+import com.example.demo.models.CIModule;
 import com.example.demo.services.CIModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,16 +42,16 @@ public class CIModuleController {
     }
 
 
-//    @PutMapping(value = "/televisions/{id}")
-//    public ResponseEntity<Object> updateTelevision(@PathVariable int id, @RequestBody Television television) {
-//        televisionService.updateTelevision(id, television);
-//        return ResponseEntity.noContent().build();
-//    }
-//
-//    @PatchMapping(value = "/televisions/{id}")
-//    public ResponseEntity<Object> partialUpdateBook(@PathVariable int id, @RequestBody Television television) {
-//        televisionService.partialUpdateBook(id, television);
-//        return ResponseEntity.noContent().build();
-//    }
+    @PutMapping(value = "/cimodules/{id}")
+    public ResponseEntity<Object> updateCIMOdule(@PathVariable Long id, @RequestBody CIModule ciModule) {
+        ciModuleService.updateCIModule(id, ciModule);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping(value = "/cimodules/{id}")
+    public ResponseEntity<Object> partialUpdateCIModule(@PathVariable Long id, @RequestBody CIModule ciModule) {
+        ciModuleService.partialUpdateCIModuleBook(id, ciModule);
+        return ResponseEntity.noContent().build();
+    }
 
 }
