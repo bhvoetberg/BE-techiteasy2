@@ -22,7 +22,7 @@ public class TelevisionService {
         return televisionRepository.findAll();
     }
 
-    public Television getTelevision(int id) {
+    public Television getTelevision(Long id) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
         if (optionalTelevision.isPresent()) {
             return optionalTelevision.get();
@@ -31,7 +31,7 @@ public class TelevisionService {
         }
     }
 
-    public void deleteTelevision(int id) {
+    public void deleteTelevision(Long id) {
         if (televisionRepository.existsById(id)) {
             televisionRepository.deleteById(id);
         } else {
@@ -39,7 +39,7 @@ public class TelevisionService {
         }
     }
 
-    public int addTelevision(TelevisionRequestDto televisionRequestDto) {
+    public Long addTelevision(TelevisionRequestDto televisionRequestDto) {
         String name = televisionRequestDto.getName();
         List<Television> televisions = (List<Television>) televisionRepository.findAllByName(name);
         if (televisions.size() > 0) {
@@ -56,7 +56,7 @@ public class TelevisionService {
         return newTelevision.getId();
     }
 
-    public void updateTelevision(int id, Television television) {
+    public void updateTelevision(Long id, Television television) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
 
         if (optionalTelevision.isPresent()) {
@@ -68,7 +68,7 @@ public class TelevisionService {
         }
     }
 
-    public void partialUpdateBook(int id, Television television) {
+    public void partialUpdateBook(Long id, Television television) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
 
         if (optionalTelevision.isPresent()) {

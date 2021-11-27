@@ -22,21 +22,21 @@ public class TelevisionController {
     }
 
     @GetMapping(value = "/televisions/{id}")
-    public ResponseEntity<Object> getTelevision(@PathVariable int id) {
+    public ResponseEntity<Object> getTelevision(@PathVariable Long id) {
         return ResponseEntity.ok(televisionService.getTelevision(id));
     }
 
     //    Hieronder een specifieke weergave van de PathVariable die nodig is al er in de 'value' meerdere
 //    variabelen staan die bepalen welk record moet worden verwijderd.
     @DeleteMapping(value = "/televisions/{id}")
-    public ResponseEntity<Object> deleteBook(@PathVariable("id") int id) {
+    public ResponseEntity<Object> deleteTelevision(@PathVariable("id") Long id) {
         televisionService.deleteTelevision(id);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping(value = "/televisions")
     public ResponseEntity<Object> addTelevision(@RequestBody TelevisionRequestDto televisionRequestDto) {
-        int newId = televisionService.addTelevision(televisionRequestDto);
+        Long newId = televisionService.addTelevision(televisionRequestDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
                 buildAndExpand(newId).toUri();
@@ -45,13 +45,13 @@ public class TelevisionController {
 
 
     @PutMapping(value = "/televisions/{id}")
-    public ResponseEntity<Object> updateTelevision(@PathVariable int id, @RequestBody Television television) {
+    public ResponseEntity<Object> updateTelevision(@PathVariable Long id, @RequestBody Television television) {
         televisionService.updateTelevision(id, television);
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping(value = "/televisions/{id}")
-    public ResponseEntity<Object> partialUpdateBook(@PathVariable int id, @RequestBody Television television) {
+    public ResponseEntity<Object> partialUpdateBook(@PathVariable Long id, @RequestBody Television television) {
         televisionService.partialUpdateBook(id, television);
         return ResponseEntity.noContent().build();
     }

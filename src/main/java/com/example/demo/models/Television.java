@@ -10,7 +10,7 @@ public class Television {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int id;
+    private Long id;
     private String brand;
     private String name;
     private String type;
@@ -28,11 +28,11 @@ public class Television {
     private Integer originalStock;
     private Integer sold;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
