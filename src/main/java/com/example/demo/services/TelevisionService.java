@@ -41,10 +41,6 @@ public class TelevisionService {
         }
     }
 
-//    public int addTelevision(Television television) {
-//        Television newTelevision = televisionRepository.save(television);
-//        return newTelevision.getId();
-//    }
 public int addTelevision(TelevisionRequestDto televisionRequestDto) {
     String name = televisionRequestDto.getName();
     List<Television> televisions = (List<Television>)televisionRepository.findAllByName(name);
@@ -67,7 +63,6 @@ public int addTelevision(TelevisionRequestDto televisionRequestDto) {
 
         if (optionalTelevision.isPresent()) {
             Television storedTelevision = optionalTelevision.get();
-
             television.setId(storedTelevision.getId());
             televisionRepository.save(television);
         }
