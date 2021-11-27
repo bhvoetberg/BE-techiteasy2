@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.dtos.TelevisionRequestDto;
 import com.example.demo.models.Television;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,22 +26,23 @@ public class TelevisionController {
         return ResponseEntity.ok(televisionService.getTelevision(id));
     }
 
+    //    Hieronder een specifieke weergave van de PathVariable die nodig is al er in de 'value' meerdere
+//    variabelen staan die bepalen welk record moet worden verwijderd.
+    @DeleteMapping(value = "/televisions/{id}")
+    public ResponseEntity<Object> deleteBook(@PathVariable("id") int id) {
+        televisionService.deleteTelevision(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping(value = "/televisions")
-    public ResponseEntity<Object> addTelevision(@RequestBody Television television) {
-        int newId = televisionService.addTelevision(television);
+    public ResponseEntity<Object> addTelevision(@RequestBody TelevisionRequestDto televisionRequestDto) {
+        int newId = televisionService.addTelevision(televisionRequestDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
                 buildAndExpand(newId).toUri();
         return ResponseEntity.created(location).build();
     }
 
-//    Hieronder een specifieke weergave van de PathVariable die nodig is al er in de 'value' meerdere
-//    variabelen staan die bepalen welk record moet worden verwijderd.
-    @DeleteMapping(value = "/televisions/{id}")
-    public ResponseEntity<Object> deleteBook(@PathVariable("id") int id) {
-        televisionService.deleteBook(id);
-        return ResponseEntity.noContent().build();
-    }
 
     @PutMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> updateTelevision(@PathVariable int id, @RequestBody Television television) {

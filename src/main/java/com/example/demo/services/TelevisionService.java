@@ -1,10 +1,15 @@
 package com.example.demo.services;
 
+import com.example.demo.dtos.TelevisionInputDto;
+import com.example.demo.dtos.TelevisionRequestDto;
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.RecordNotFoundException;
 import com.example.demo.models.Television;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repositories.TelevisionRepository;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,13 +32,7 @@ public class TelevisionService {
         }
     }
 
-    public int addTelevision(Television television) {
-        Television newTelevision = televisionRepository.save(television);
-        return newTelevision.getId();
-    }
-
-
-   public void deleteBook(int id) {
+    public void deleteTelevision(int id) {
         if (televisionRepository.existsById(id)) {
             televisionRepository.deleteById(id);
         }
@@ -41,6 +40,27 @@ public class TelevisionService {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }
+
+//    public int addTelevision(Television television) {
+//        Television newTelevision = televisionRepository.save(television);
+//        return newTelevision.getId();
+//    }
+public int addTelevision(TelevisionRequestDto televisionRequestDto) {
+    String name = televisionRequestDto.getName();
+    List<Television> televisions = (List<Television>)televisionRepository.findAllByName(name);
+    if (televisions.size() > 0) {
+        System.out.println("Lengte is: " + televisions.size());
+        throw new BadRequestException("Name already exists!!!");
+    }
+
+    Television television = new Television();
+    television.setName(televisionRequestDto.getName());
+    television.setType(televisionRequestDto.getType());
+    television.setBrand(televisionRequestDto.getBrand());
+
+    Television newTelevision = televisionRepository.save(television);
+    return newTelevision.getId();
+}
 
     public void updateTelevision(int id, Television television) {
         Optional<Television> optionalTelevision = televisionRepository.findById(id);
