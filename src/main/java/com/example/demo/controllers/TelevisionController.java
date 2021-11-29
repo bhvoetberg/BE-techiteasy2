@@ -26,6 +26,11 @@ public class TelevisionController {
         return ResponseEntity.ok(televisionService.getTelevision(id));
     }
 
+    @GetMapping(value = "/televisions/{id}/cimodule")
+    public ResponseEntity<Object> getTelevisionCIModule(@PathVariable Long id) {
+        return ResponseEntity.ok(televisionService.getTelevisionCIModule(id));
+    }
+
     //    Hieronder een specifieke weergave van de PathVariable die nodig is al er in de 'value' meerdere
 //    variabelen staan die bepalen welk record moet worden verwijderd.
     @DeleteMapping(value = "/televisions/{id}")

@@ -4,6 +4,7 @@ import com.example.demo.dtos.TelevisionInputDto;
 import com.example.demo.dtos.TelevisionRequestDto;
 import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.RecordNotFoundException;
+import com.example.demo.models.CIModule;
 import com.example.demo.models.Television;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,6 +89,17 @@ public class TelevisionService {
         } else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
+    }
+
+    public Iterable<CIModule> getTelevisionCIModule(Long id) {
+        Optional<Television> optionalTelevision = televisionRepository.findById(id);
+        if (optionalTelevision.isPresent()) {
+            Television television = optionalTelevision.get();
+            return television.getCiModules();
+        } else {
+            throw new RecordNotFoundException("ID does not exist!");
+        }
+
     }
 
 }

@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "televisions")
@@ -27,6 +29,14 @@ public class Television {
     private Boolean ambiLight;
     private Integer originalStock;
     private Integer sold;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "television_id", referencedColumnName = "id")
+    private List<CIModule> ciModules = new ArrayList<>();
+
+    public List<CIModule> getCiModules() {
+        return ciModules;
+    }
 
     public Long getId() {
         return id;

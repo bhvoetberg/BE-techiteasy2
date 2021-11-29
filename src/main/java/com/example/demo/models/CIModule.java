@@ -37,5 +37,6 @@ public class CIModule {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 }
 
